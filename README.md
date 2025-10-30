@@ -46,7 +46,7 @@ After this, you’ll be ready to build your first Javalin app 🚀
 *(Copy the whole line — don’t break it!)*
 
 ```powershell
-iwr -useb https://raw.githubusercontent.com/jchikwanda/javalin-setup-assistant/main/install-javalin-env.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/JacobChikwanda/javalin-setup-assistant/main/install-javalin-env.ps1 | iex
 ```
 
 ### Step 3: Press **Enter** ⏎
@@ -82,7 +82,7 @@ If both show version numbers — 🎉 You’re ready!
 ### Step 2: Copy and paste this command
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/jchikwanda/javalin-setup-assistant/main/install-javalin-env.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/JacobChikwanda/javalin-setup-assistant/main/install-javalin-env.sh | sudo bash
 ```
 
 ### Step 3: Press **Enter** ⏎ and type your password 🔑

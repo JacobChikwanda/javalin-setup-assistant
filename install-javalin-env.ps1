@@ -3,7 +3,7 @@
 ☕ Javalin Setup Assistant (Windows Edition)
 --------------------------------------------------------------
 👨‍💻 Created by: Jacob Chikwanda & GPT-5
-🌐 GitHub: https://github.com/jchikwanda/javalin-setup-assistant
+🌐 GitHub: https://github.com/JacobChikwanda/javalin-setup-assistant
 📘 Purpose: Help students easily install Java + Gradle for Javalin
 ==============================================================
 #>
