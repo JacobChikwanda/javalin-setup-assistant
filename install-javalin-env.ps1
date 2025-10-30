@@ -20,8 +20,7 @@ if (Test-Path $bannerPath) {
 }
 
 # --- Require Admin ---
-if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent())
-    .IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Host "⚠️  Please run PowerShell as Administrator (right-click → Run as Administrator)." -ForegroundColor Red
     exit
 }
