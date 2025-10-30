@@ -30,6 +30,7 @@ $IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIde
 
 if (-not $IsAdmin) {
     Write-Host "WARNING: Please run PowerShell as Administrator (right-click - Run as Administrator)." -ForegroundColor Red
+    Read-Host "Press Enter to exit"
     exit 1
 }
 
@@ -109,6 +110,7 @@ foreach ($dep in $dependencies.Keys) {
 if ($missing.Count -eq 0) {
     Write-Host "`nYou're all set! Everything you need for Javalin is installed." -ForegroundColor Green
     Write-Host "Script by Jacob Chikwanda & GPT-5`n"
+    Read-Host "Press Enter to exit"
     exit 0
 }
 
@@ -124,6 +126,7 @@ Write-Host "Estimated total download size: about $totalSize MB.`n"
 $confirm = Read-Host "Do you want to start installing now? (y/n)"
 if ($confirm -ne "y") {
     Write-Host "`nSetup cancelled. Run this script again anytime!"
+    Read-Host "Press Enter to exit"
     exit 0
 }
 
@@ -137,3 +140,8 @@ Write-Host "`nAll done! Restart PowerShell and check:" -ForegroundColor Green
 Write-Host "   java --version"
 Write-Host "   gradle -v"
 Write-Host "`nCreated with love by Jacob Chikwanda & GPT-5`n"
+
+# Keep window open when run from remote
+if ($Host.Name -eq "ConsoleHost") {
+    Read-Host "Press Enter to exit"
+}
