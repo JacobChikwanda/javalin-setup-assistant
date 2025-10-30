@@ -1,14 +1,11 @@
-<#
-==============================================================
-☕ Javalin Setup Assistant (Windows Edition)
---------------------------------------------------------------
-👨‍💻 Created by: Jacob Chikwanda & GPT-5
-🌐 GitHub: https://github.com/JacobChikwanda/javalin-setup-assistant
-📘 Purpose: Help students easily install Java + Gradle for Javalin
-==============================================================
-#>
+# ==============================================================
+# Javalin Setup Assistant (Windows Edition)
+# Created by: Jacob Chikwanda & GPT-5
+# GitHub: https://github.com/JacobChikwanda/javalin-setup-assistant
+# Purpose: Help students easily install Java + Gradle for Javalin
+# ==============================================================
 
-# --- Display Banner ---
+# Display Banner
 $scriptDir = Split-Path $MyInvocation.MyCommand.Definition -Parent
 $bannerPath = Join-Path $scriptDir "assets\banner.txt"
 
@@ -16,14 +13,14 @@ if (Test-Path $bannerPath) {
     Get-Content $bannerPath | ForEach-Object { Write-Host $_ -ForegroundColor Cyan }
     Write-Host "`n"
 } else {
-    Write-Host "☕ Javalin Setup Assistant by Jacob Chikwanda & GPT-5 ❤️`n" -ForegroundColor Cyan
+    Write-Host "Javalin Setup Assistant by Jacob Chikwanda & GPT-5`n" -ForegroundColor Cyan
 }
 
-# --- Require Admin ---
+# Require Admin
 $IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
 if (-not $IsAdmin) {
-    Write-Host "⚠️  Please run PowerShell as Administrator (right-click → Run as Administrator)." -ForegroundColor Red
+    Write-Host "WARNING: Please run PowerShell as Administrator (right-click - Run as Administrator)." -ForegroundColor Red
     exit
 }
 
@@ -38,15 +35,15 @@ function Show-Progress($activity) {
     }
 }
 
-Write-Host "👋 Hello, student! This tool by Jacob Chikwanda & GPT-5 will check for Java, Gradle, and Chocolatey."
-Write-Host "It installs only what’s missing — safe, automatic, and friendly!`n"
+Write-Host "Hello, student! This tool by Jacob Chikwanda & GPT-5 will check for Java, Gradle, and Chocolatey."
+Write-Host "It installs only what's missing - safe, automatic, and friendly!`n"
 
 $dependencies = [ordered]@{
     "Chocolatey" = @{
         cmd = "choco"
         desc = "Chocolatey installs tools automatically on Windows."
         install = { 
-            Write-Host "🍫 Installing Chocolatey..." -ForegroundColor Yellow
+            Write-Host "Installing Chocolatey..." -ForegroundColor Yellow
             Set-ExecutionPolicy Bypass -Scope Process -Force
             [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
             iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
@@ -70,40 +67,40 @@ $missing = @()
 foreach ($dep in $dependencies.Keys) {
     $cmd = $dependencies[$dep].cmd
     if (Command-Exists $cmd) {
-        Write-Host "✅ $dep is already installed."
+        Write-Host "OK - $dep is already installed."
     } else {
-        Write-Host "❌ $dep is missing."
+        Write-Host "MISSING - $dep is not installed."
         $missing += $dep
     }
 }
 
 if ($missing.Count -eq 0) {
-    Write-Host "`n🎓 You’re already a pro! Everything you need for Javalin is installed." -ForegroundColor Green
-    Write-Host "💚 Script by Jacob Chikwanda & GPT-5"
+    Write-Host "`nYou're all set! Everything you need for Javalin is installed." -ForegroundColor Green
+    Write-Host "Script by Jacob Chikwanda & GPT-5"
     exit
 }
 
-Write-Host "`n🧩 Missing Components:`n" -ForegroundColor Yellow
+Write-Host "`nMissing Components:`n" -ForegroundColor Yellow
 foreach ($m in $missing) {
-    Write-Host "🔹 $m — $($dependencies[$m].desc)`n"
+    Write-Host "- $m : $($dependencies[$m].desc)`n"
 }
 
 $totalSize = 500
-Write-Host "💾 Estimated total download size: about $totalSize MB.`n"
+Write-Host "Estimated total download size: about $totalSize MB.`n"
 
 $confirm = Read-Host "Do you want to start installing now? (y/n)"
 if ($confirm -ne "y") {
-    Write-Host "❌ Setup cancelled. Run this script again anytime!"
+    Write-Host "Setup cancelled. Run this script again anytime!"
     exit
 }
 
 foreach ($m in $missing) {
-    Write-Host "`n🚀 Installing $m..." -ForegroundColor Cyan
+    Write-Host "`nInstalling $m..." -ForegroundColor Cyan
     Show-Progress "Installing $m"
     & $dependencies[$m].install
 }
 
-Write-Host "`n✅ All done! Restart PowerShell and check:" -ForegroundColor Green
+Write-Host "`nAll done! Restart PowerShell and check:" -ForegroundColor Green
 Write-Host "   java --version"
 Write-Host "   gradle -v"
-Write-Host "`n🎓 Created with ❤️ by Jacob Chikwanda & GPT-5"
+Write-Host "`nCreated with love by Jacob Chikwanda & GPT-5"
