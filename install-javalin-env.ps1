@@ -9,16 +9,17 @@
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
-# Display Banner
+# Display ASCII Banner
 $banner = @"
-███████╗ █████╗ ██╗   ██╗ █████╗ ██╗     ██╗███╗   ██╗
-██╔════╝██╔══██╗██║   ██║██╔══██╗██║     ██║████╗  ██║
-█████╗  ███████║██║   ██║███████║██║     ██║██╔██╗ ██║
-██╔══╝  ██╔══██║╚██╗ ██╔╝██╔══██║██║     ██║██║╚██╗██║
-██║     ██║  ██║ ╚████╔╝ ██║  ██║███████╗██║██║ ╚████║
-╚═╝     ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝
-            Javalin Setup Assistant
-        by Jacob Chikwanda & GPT-5
+  _____     _     _   _          
+ |_   _|   | |   | | (_)         
+   | | __ _| |__ | |  _ ___ _   _
+   | |/ _\` | '_ \| | | / __| | | |
+   | | (_| | | | | | | \__ \ |_| |
+   |_|\__,_|_| |_|_| |_|___/\__,_|
+   
+        Javalin Setup Assistant
+    by Jacob Chikwanda & GPT-5
 "@
 
 Write-Host $banner -ForegroundColor Cyan

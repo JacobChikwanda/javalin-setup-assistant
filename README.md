@@ -46,7 +46,7 @@ After this, you’ll be ready to build your first Javalin app 🚀
 *(Copy the whole line — don’t break it!)*
 
 ```powershell
-iwr -useb https://raw.githubusercontent.com/JacobChikwanda/javalin-setup-assistant/main/install-javalin-env.ps1 | iex
+Start-Process powershell -ArgumentList "-NoExit", "-Command", "iwr -useb https://raw.githubusercontent.com/JacobChikwanda/javalin-setup-assistant/main/install-javalin-env.ps1 | iex" -Verb RunAs
 ```
 
 ### Step 3: Press **Enter** ⏎
