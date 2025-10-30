@@ -31,54 +31,6 @@ A friendly script that automatically installs everything you need to build Java 
 
 ---
 
-## 🚀 **Quick Start**
-
-### Choose Your Operating System:
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### 🪟 **Windows**
-
-**One-line install:**
-```powershell
-Start-Process powershell -ArgumentList "-NoExit", "-Command", "iwr -useb https://raw.githubusercontent.com/JacobChikwanda/javalin-setup-assistant/main/install-javalin-env.ps1 | iex" -Verb RunAs
-```
-
-**How to run:**
-1. Press `Win + X` → Select **PowerShell (Admin)**
-2. Copy the command above
-3. Right-click in PowerShell to paste
-4. Press `Enter` and watch the magic! ✨
-
-</td>
-<td width="50%" valign="top">
-
-### 🐧 **Linux**
-
-**One-line install:**
-```bash
-curl -fsSL https://raw.githubusercontent.com/JacobChikwanda/javalin-setup-assistant/main/install-javalin-env.sh | sudo bash
-```
-
-**Alternative (if curl isn't installed):**
-```bash
-wget -qO- https://raw.githubusercontent.com/JacobChikwanda/javalin-setup-assistant/main/install-javalin-env.sh | sudo bash
-```
-
-**How to run:**
-1. Open Terminal (`Ctrl + Alt + T`)
-2. Copy & paste the command
-3. Enter your password when asked
-4. Done! 🎉
-
-</td>
-</tr>
-</table>
-
----
-
 ## 📖 **Detailed Installation Guide**
 
 <details>
