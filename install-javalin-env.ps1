@@ -20,10 +20,14 @@ if (Test-Path $bannerPath) {
 }
 
 # --- Require Admin ---
-if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+# --- Require Admin ---
+$IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+
+if (-not $IsAdmin) {
     Write-Host "⚠️  Please run PowerShell as Administrator (right-click → Run as Administrator)." -ForegroundColor Red
     exit
 }
+
 
 function Command-Exists($cmd) {
     return (Get-Command $cmd -ErrorAction SilentlyContinue) -ne $null
