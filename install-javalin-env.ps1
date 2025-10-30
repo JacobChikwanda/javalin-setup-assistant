@@ -20,14 +20,12 @@ if (Test-Path $bannerPath) {
 }
 
 # --- Require Admin ---
-# --- Require Admin ---
 $IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
 if (-not $IsAdmin) {
     Write-Host "⚠️  Please run PowerShell as Administrator (right-click → Run as Administrator)." -ForegroundColor Red
     exit
 }
-
 
 function Command-Exists($cmd) {
     return (Get-Command $cmd -ErrorAction SilentlyContinue) -ne $null
@@ -43,7 +41,19 @@ function Show-Progress($activity) {
 Write-Host "👋 Hello, student! This tool by Jacob Chikwanda & GPT-5 will check for Java, Gradle, and Chocolatey."
 Write-Host "It installs only what’s missing — safe, automatic, and friendly!`n"
 
-$dependencies = @{
+$dependencies = [ordered]@{
+    "Chocolatey" = @{
+        cmd = "choco"
+        desc = "Chocolatey installs tools automatically on Windows."
+        install = { 
+            Write-Host "🍫 Installing Chocolatey..." -ForegroundColor Yellow
+            Set-ExecutionPolicy Bypass -Scope Process -Force
+            [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+            iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+            # Refresh PATH in current session
+            $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+        }
+    }
     "Java (OpenJDK)" = @{
         cmd = "java"
         desc = "Java lets your computer run Java apps."
@@ -53,11 +63,6 @@ $dependencies = @{
         cmd = "gradle"
         desc = "Gradle builds and runs your Javalin projects."
         install = { choco install gradle -y }
-    }
-    "Chocolatey" = @{
-        cmd = "choco"
-        desc = "Chocolatey installs tools automatically on Windows."
-        install = { Write-Host "🍫 Please install Chocolatey manually from https://chocolatey.org/install" -ForegroundColor Yellow }
     }
 }
 
